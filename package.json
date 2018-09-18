@@ -1,22 +1,15 @@
 {
   "name": "bobecs",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Entity Component System library",
   "main": "./lib/bobecs.js",
   "scripts": {
     "build": "./node_modules/.bin/babel --presets es2015 -d lib/ src/",
     "prepublish": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run cs && npm run tu",
     "cs": "./node_modules/.bin/eslint src/*.jsx",
     "tu": "./node_modules/.bin/mocha --compilers js:babel-core/register"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/destvincent/bobecs.git"
-  },
-  "author": "desaintvincent",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/destvincent/bobecs#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -29,5 +22,15 @@
     "sinon": "^6.3.3",
     "sinon-chai": "^3.2.0",
     "vinyl-source-stream": "^2.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desaintvincent/bobecs.git"
+  },
+  "author": "desaintvincent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/desaintvincent/bobecs/issues"
+  },
+  "homepage": "https://github.com/desaintvincent/bobecs#readme"
 }
