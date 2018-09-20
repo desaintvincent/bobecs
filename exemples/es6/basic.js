@@ -13,8 +13,8 @@ document.body.appendChild( stats.dom );
 document.body.appendChild( stats.domElement );
 
 
-function randMinMax(min, max) {
-
+function randMinMax(min = 0, max = 100) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // Components
@@ -42,13 +42,17 @@ class Size extends Component {
 }
 
 class Color extends Component {
-    constructor() {
+    constructor(color = null) {
         super();
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+
+        if (!color) {
+            let letters = '0123456789ABCDEF';
+            color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[randMinMax(0, 16)];
+            }
         }
+
         this.color = color;
     }
 }
@@ -75,8 +79,8 @@ class OutSystem extends System {
             ECS.createEntity()
                 .addComponent(new Position(200, 200))
                 .addComponent(new Color())
-                .addComponent(new Size(Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)))
-                .addComponent(new Velocity(Math.floor(Math.random() * 1001) - 500, Math.floor(Math.random() * 1001) - 500))
+                .addComponent(new Size(randMinMax(0, 100), randMinMax(0, 100)))
+                .addComponent(new Velocity(randMinMax(-500, 500), randMinMax(-500, 500)))
                 .addToSystem('MoveSystem')
                 .addToSystem('OutSystem')
                 .addToSystem('RenderSystem');
@@ -114,8 +118,8 @@ for (let i = 0; i < 1000; i++) {
     ECS.createEntity()
         .addComponent(new Position(200, 200))
         .addComponent(new Color())
-        .addComponent(new Velocity(Math.floor(Math.random() * 1001) - 500, Math.floor(Math.random() * 1001) - 500))
-        .addComponent(new Size(Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)))
+        .addComponent(new Size(randMinMax(0, 100), randMinMax(0, 100)))
+        .addComponent(new Velocity(randMinMax(-500, 500), randMinMax(-500, 500)))
         .addToSystem('MoveSystem')
         .addToSystem('OutSystem')
         .addToSystem('RenderSystem');
