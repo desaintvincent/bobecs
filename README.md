@@ -2,6 +2,9 @@
 
 Entity Component System library
 
+[![Build Status](https://travis-ci.com/desaintvincent/bobecs.svg?branch=master)](https://travis-ci.com/desaintvincent/bobecs)
+
+
 ### Installing
 Get module:
 ```
