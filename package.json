@@ -1,6 +1,6 @@
 {
   "name": "bobecs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Entity Component System library",
   "main": "./lib/bobecs.js",
   "scripts": {

@@ -1,4 +1,5 @@
 import Entity from './../src/Entity';
+import ComponentFactory from './../src/ComponentFactory';
 const chai      = require('chai');
 const sinon     = require('sinon');
 const sinonChai = require('sinon-chai');
@@ -160,6 +161,74 @@ describe('Entity', () => {
             e.hasComponent = sinon.spy();
             e.has('myarg');
             expect(e.hasComponent).to.have.been.calledWith('myarg');
+        });
+    });
+
+    describe('serialize', () => {
+        it('should copy components and tags', () => {
+            const e = new Entity();
+            class fakeComponent {
+                serialize () {
+                    return {
+                        _foo: 'bar',
+                        _bar: 'foo'
+                    };
+                }
+            }
+            e.add(new fakeComponent());
+            e.addTag('foo');
+            const s = e.serialize();
+            expect(s).to.deep.equal({ _tags: [ 'foo' ], _components: { fakecomponent: { _foo: 'bar', _bar: 'foo' } } });
+        });
+    });
+
+    describe('build', () => {
+        it('should build an entity with all props in arg', () => {
+            ComponentFactory.create = (name) => {
+                return {
+                    name,
+                    build: sinon.spy()
+                };
+            };
+            const e = new Entity();
+            e.build({ _tags: [ 'foo' ], _components: { fakecomponent: { _foo: 'bar', _bar: 'foo' } } });
+            expect(e._tags).to.deep.equal(['foo']);
+            expect(e._components).to.have.a.property('fakecomponent');
+            expect(e._components.fakecomponent.build).to.have.been.calledWith({ _foo: 'bar', _bar: 'foo' });
+        });
+    });
+
+    describe('clone', () => {
+        it('should clone an entity', () => {
+            ComponentFactory.create = (name) => {
+                return {
+                    name,
+                    build: sinon.spy()
+                };
+            };
+            const e = new Entity();
+            e._manager = {
+                createEntity: () => {
+                    return new Entity();
+                }
+            };
+            class fakeComponent {
+                serialize () {
+                    return {
+                        _foo: 'bar',
+                        _bar: 'foo'
+                    };
+                }
+            }
+            e.add(new fakeComponent());
+            e.addTag('foo');
+
+            const e2 = e.clone();
+
+            expect(e2._tags).to.deep.equal(['foo']);
+            expect(e2._components).to.have.a.property('fakecomponent');
+            expect(e2._components.fakecomponent.build).to.have.been.calledWith({ _foo: 'bar', _bar: 'foo' });
+            expect(e2._id).to.not.equal(e._id);
         });
     });
 });

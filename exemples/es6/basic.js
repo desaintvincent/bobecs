@@ -25,6 +25,7 @@ class Position extends Component {
         this.y = y;
     }
 }
+
 class Velocity extends Component {
     constructor(x, y) {
         super();
@@ -49,7 +50,7 @@ class Color extends Component {
             let letters = '0123456789ABCDEF';
             color = '#';
             for (var i = 0; i < 6; i++) {
-                color += letters[randMinMax(0, 16)];
+                color += letters[randMinMax(0, 15)];
             }
         }
 

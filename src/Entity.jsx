@@ -1,3 +1,5 @@
+import ComponentFactory from './ComponentFactory';
+
 export default class Entity {
     constructor(id = null) {
         this._id = (id === null ?(+new Date()).toString(16) +
@@ -37,7 +39,7 @@ export default class Entity {
 
     getComponent(componentName) {
         if (!this.hasComponent(componentName)) {
-            throw new Error(`Tried to get unexisting component in entity ${this._id}`);
+            throw new Error(`Tried to get unexisting component "${componentName}" in entity ${this._id}`);
         }
         return this._components[componentName.toLowerCase()];
     }
@@ -79,5 +81,30 @@ export default class Entity {
 
     has(componentName) {
         return this.hasComponent(componentName);
+    }
+
+    serialize() {
+        const obj = {
+            _tags: this._tags,
+            _components: {}
+        };
+        Object.keys(this._components).forEach((key) => {
+            obj._components[key] = this._components[key].serialize();
+        });
+        return obj;
+    }
+
+    build(data) {
+        Object.assign(this._tags, data._tags);
+        Object.keys(data._components).forEach((key) => {
+            this._components[key] = ComponentFactory.create(key);
+            this._components[key].build(data._components[key]);
+        });
+    }
+
+    clone() {
+        const e = this._manager.createEntity();
+        e.build(this.serialize());
+        return e;
     }
 }
