@@ -8,9 +8,10 @@ chai.use(sinonChai);
 describe('ECS', () => {
     describe('createEntity', () => {
         it('should create and add an entity', () => {
-            const entity = 'entity';
             ECS.createEntity();
             expect(ECS._entities.length).to.equal(1);
+            ECS.createEntity();
+            expect(ECS._entities.length).to.equal(2);
         });
     });
 

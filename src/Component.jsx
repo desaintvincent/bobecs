@@ -9,4 +9,25 @@ export default class Component {
     isDirty() {
         return this._dirty;
     }
+
+    serialize() {
+        const s = {};
+        Object.getOwnPropertyNames(this).forEach((key) => {
+            if (key !== '_dirty') {
+                s[key] =  this[key];
+            }
+        });
+        return s;
+    }
+
+    build(data) {
+        Object.assign(this, data);
+    }
+
+    clone() {
+        const obj = Object.create(this);
+        this.constructor.apply(obj);
+        obj.build(this.serialize());
+        return obj;
+    }
 }
