@@ -1,5 +1,5 @@
-import Entity from './../src/Entity';
-import ComponentFactory from './../src/ComponentFactory';
+import Entity from '../src/Entity';
+import ComponentFactory from '../src/ComponentFactory';
 const chai      = require('chai');
 const sinon     = require('sinon');
 const sinonChai = require('sinon-chai');

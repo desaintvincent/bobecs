@@ -1,4 +1,4 @@
-export default class Component {
+module.exports = class Component {
     constructor() {
         this._dirty = true;
     }
@@ -30,4 +30,4 @@ export default class Component {
         obj.build(this.serialize());
         return obj;
     }
-}
+};

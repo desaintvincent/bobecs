@@ -1,5 +1,5 @@
-import { ECS, Entity, Component, System } from '../../lib/bobecs';
-import Stats from 'stats.js';
+const { ECS, Component, System } = require('../../src/bobecs');
+const Stats = require('stats.js');
 
 // canvas
 const canvas = document.getElementById('canvas');
@@ -134,7 +134,7 @@ function gameLoop() {
     stats.begin();
     ECS.update(ElapsedTime);
     stats.end();
-    xPanel.update(ECS._entities.length, 1200);
+    xPanel.update(ECS.entities().size, 1200);
     oldTime = time;
     requestAnimationFrame(gameLoop);
 }

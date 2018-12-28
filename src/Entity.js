@@ -1,6 +1,6 @@
-import ComponentFactory from './ComponentFactory';
+const ComponentFactory = require('./ComponentFactory');
 
-export default class Entity {
+module.exports = class Entity {
     constructor(id = null) {
         this._id = (id === null ?(+new Date()).toString(16) +
             (Math.random() * 100000000 | 0).toString(16) +
@@ -107,4 +107,4 @@ export default class Entity {
         e.build(this.serialize());
         return e;
     }
-}
+};

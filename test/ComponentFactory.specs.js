@@ -1,4 +1,4 @@
-import ComponentFactory from './../src/ComponentFactory';
+import ComponentFactory from '../src/ComponentFactory';
 const chai      = require('chai');
 const sinon     = require('sinon');
 const sinonChai = require('sinon-chai');
@@ -19,18 +19,12 @@ class Bar {
 }
 
 describe('ComponentFactory', () => {
-    describe('static', () => {
-        it('should have a _components property', () => {
-            expect(ComponentFactory).to.have.a.property('_components');
-        });
-    });
-
     describe('add', () => {
         it('should store an instance of a class', () => {
             ComponentFactory.add(Foo);
             ComponentFactory.add(Bar);
-            expect(ComponentFactory._components).to.have.a.property('foo');
-            expect(ComponentFactory._components).to.have.a.property('bar');
+            expect(ComponentFactory.components().has('foo')).to.equal(true);
+            expect(ComponentFactory.components().has('bar')).to.equal(true);
         });
     });
 

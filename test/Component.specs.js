@@ -1,4 +1,4 @@
-import Component from './../src/Component';
+import Component from '../src/Component';
 import { expect } from 'chai';
 describe('Component', () => {
     describe('constructor', () => {

@@ -1,4 +1,4 @@
-import System from './../src/System';
+import System from '../src/System';
 const chai      = require('chai');
 const sinon     = require('sinon');
 const sinonChai = require('sinon-chai');

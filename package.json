@@ -1,16 +1,14 @@
 {
   "name": "bobecs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Entity Component System library",
-  "main": "./lib/bobecs.js",
+  "main": "./src/bobecs.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel --presets env -d lib/ src/",
     "exemples": "./node_modules/.bin/browserify exemples/es6/basic.js -t [ babelify ] | ./node_modules/.bin/uglifyjs -c -o exemples/dist/basic.js",
-    "dev": "./node_modules/.bin/watch 'npm run build && npm run exemples' src/ exemples/es6/",
+    "dev": "./node_modules/.bin/watch 'npm run exemples' src/ exemples/es6/",
     "clean": "rm -rf node_modules lib exemples/dist/*.js",
-    "prepublish": "npm run build",
     "test": "npm run cs && npm run tu",
-    "cs": "./node_modules/.bin/eslint src/*.jsx",
+    "cs": "./node_modules/.bin/eslint src/*.js",
     "tu": "./node_modules/.bin/mocha --compilers js:babel-core/register"
   },
   "devDependencies": {
@@ -37,5 +35,5 @@
   "bugs": {
     "url": "https://github.com/desaintvincent/bobecs/issues"
   },
-  "homepage": "https://github.com/desaintvincent/bobecs#readme"
+  "homepage": "https://github.com/desaintvincent/bobecs/#readme"
 }
