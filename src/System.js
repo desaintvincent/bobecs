@@ -1,4 +1,4 @@
-module.exports = class System {
+class System {
     constructor(frequency = 0) {
         this._frequency = frequency;
         this._deltaTime = 0;
@@ -38,4 +38,6 @@ module.exports = class System {
     postUpdate(deltaTime) {}
     postAdd(entity) {}
     postRemove(entity) {}
-};
+}
+
+module.exports = System;

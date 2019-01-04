@@ -1,6 +1,6 @@
 const Entity = require('./Entity');
 
-const ecs = class ECS {
+class ECS {
     static entities() {
         if (!this._entities) {
             this._entities = new Map();
@@ -75,6 +75,6 @@ const ecs = class ECS {
     static removeEntityFromAllSystems(entity) {
         this.systems().forEach(s => s.removeEntity(entity));
     }
-};
+}
 
-module.exports = ecs;
+module.exports = ECS;
