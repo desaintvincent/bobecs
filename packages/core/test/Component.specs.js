@@ -1,5 +1,5 @@
-import Component from '../src/Component';
-import { expect } from 'chai';
+const Component = require('../src/Component');
+const { expect } = require('chai');
 describe('Component', () => {
     describe('constructor', () => {
         it('should init _dirty var to true', () => {

@@ -34,6 +34,7 @@ module.exports = {
     },
     "globals": {
         "require": true,
-        "module": true
+        "module": true,
+        'Buffer': true
     }
 };

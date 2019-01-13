@@ -6,8 +6,8 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 // stats
-var stats = new Stats();
-var xPanel = stats.addPanel( new Stats.Panel('Entities', '#ff8', '#221' ));
+const stats = new Stats();
+const xPanel = stats.addPanel( new Stats.Panel('Entities', '#ff8', '#221' ));
 stats.showPanel(3);
 document.body.appendChild( stats.dom );
 document.body.appendChild( stats.domElement );
@@ -127,7 +127,7 @@ for (let i = 0; i < 1000; i++) {
 }
 
 // Main Loop
-var oldTime = 0;
+let oldTime = 0;
 function gameLoop() {
     const time = performance.now() / 1000;
     const ElapsedTime = time - oldTime;
