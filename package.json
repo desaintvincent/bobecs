@@ -1,41 +1,26 @@
 {
   "name": "bobecs",
-  "version": "0.2.0",
-  "description": "Entity Component System library",
-  "main": "./src/bobecs.js",
-  "scripts": {
-    "exemples": "./node_modules/.bin/browserify exemples/es6/basic.js -t [ babelify ] | ./node_modules/.bin/uglifyjs -c -o exemples/dist/basic.js",
-    "dev": "./node_modules/.bin/watch 'npm run exemples' src/ exemples/es6/",
-    "clean": "rm -rf node_modules lib exemples/dist/*.js",
-    "test": "npm run cs && npm run tu",
-    "cs": "./node_modules/.bin/eslint src/*.js",
-    "tu": "./node_modules/.bin/mocha --compilers js:babel-core/register",
-    "doc": "./node_modules/.bin/jsdoc src/*.js -d ./docs/ README.md"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.0",
-    "chai": "^4.1.2",
-    "eslint": "^5.5.0",
-    "jsdoc": "^3.5.5",
-    "mocha": "^5.2.0",
-    "sinon": "^6.3.3",
-    "sinon-chai": "^3.2.0",
-    "stats.js": "^0.17.0",
-    "uglify-js": "^3.4.9",
-    "watch": "^1.0.2"
-  },
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/desaintvincent/bobecs.git"
   },
-  "author": "desaintvincent",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/desaintvincent/bobecs/issues"
   },
-  "homepage": "https://github.com/desaintvincent/bobecs/#readme"
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run test --stream --parallel",
+    "doc": "lerna run doc --stream --parallel",
+    "clean": "lerna clean",
+    "install": "npm run bootstrap"
+  },
+  "homepage": "https://github.com/desaintvincent/bobecs#readme",
+  "dependencies": {
+    "lerna": "3.10.7"
+  }
 }
